@@ -1,0 +1,15 @@
+# Dependencias
+node_modules/
+backend/node_modules/
+
+# Variables de entorno
+.env
+backend/.env
+
+# Carpetas personales y documentación
+docs/
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db

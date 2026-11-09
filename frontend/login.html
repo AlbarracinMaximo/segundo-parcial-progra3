@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Administrador - Patitas PetShop</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+    <header class="top-nav">
+
+        <div class="nav-logo">
+            <span class="logo-text">Patitas PetShop</span>
+        </div>
+
+        <div class="nav-team">
+            <span>Alumnos: Juliana Sciaini & Máximo Albarracín</span>
+        </div>
+
+        <div class="nav-actions">
+            <a href="./index.html" class="btn-secondary">Volver al Autoservicio</a>
+        </div>
+
+    </header>
+
+    <main class="login-container">
+
+        <section class="login-card">
+
+            <h2>Panel de Administrador</h2>
+            <p class="login-desc">Ingresa tus credenciales para gestionar productos y ventas</p>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input
+                        type="text"
+                        id="usuario"
+                        name="usuario"
+                        placeholder="Ej: admin1"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="••••••••"
+                        required>
+                </div>
+
+                <div id="loginError" class="alert-error" style="display: none;"></div>
+
+                <button type="submit" class="btn-primary">
+                    Ingresar
+                </button>
+
+                <button type="button" id="btnAccesoRapido" class="btn-quick-access">
+                    Acceso Rapido (Tester / Profesor)
+                </button>
+
+            </form>
+
+        </section>
+        
+    </main>
+
+    <script src="./js/login.js"></script>
+</body>
+
+</html>
