@@ -1,3 +1,4 @@
+/* VARIABLES DE COLORES (paleta reutilizable en todo el proyecto) */
 :root {
     --rosa: #FFB8BF;
     --crema: #FFF1CB;
@@ -9,10 +10,11 @@
     --exito: #2ecc71;
 }
 
-/* GENERALES */
+/* GENERALES (reseteo basico y estilos base de la pagina) */
 * {
     margin: 0;
     padding: 0;
+    /* border-box hace que el padding y el borde se incluyan dentro del ancho/alto total del elemento */
     box-sizing: border-box;
 }
 
@@ -24,15 +26,15 @@ body {
     overflow-x: hidden;
 }
 
-
+/* BARRA DE NAVEGACION SUPERIOR */
 .top-nav {
+    /* flex distribuye logo, equipo y botones en una misma fila horizontal */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
     background: #ffffff;
     border-bottom: 2px solid var(--crema);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
 .nav-logo .logo-text {
@@ -52,6 +54,7 @@ body {
     align-items: center;
 }
 
+/* BOTONES DE NAVEGACION */
 .btn-admin-link,
 .btn-secondary {
     text-decoration: none;
@@ -73,7 +76,7 @@ body {
 
 /* WELCOME / HERO */
 .welcome {
-    min-height: calc(100vh - 70px);
+    min-height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,6 +92,7 @@ body {
     gap: 3rem;
 }
 
+/* TEXTO HERO */
 .hero-content {
     flex: 1;
 }
@@ -106,6 +110,7 @@ body {
     margin-bottom: 2rem;
 }
 
+/* FORMULARIO E INPUT DE BIENVENIDA */
 #welcomeForm {
     display: flex;
     flex-direction: column;
@@ -126,6 +131,7 @@ body {
     border-color: var(--lila);
 }
 
+/* BOTON WELCOME */
 #welcomeForm button {
     border: none;
     background: var(--celeste);
@@ -143,6 +149,7 @@ body {
     background: var(--rosa);
 }
 
+/* IMAGEN HERO */
 .hero-image {
     flex: 1;
     display: flex;
@@ -154,8 +161,10 @@ body {
     max-width: 700px;
 }
 
+/* PANTALLA DE LOGIN ADMINISTRADOR */
 .login-container {
-    min-height: calc(100vh - 70px);
+    /* Ocupa la mayor parte del alto de la pantalla y centra la tarjeta con flexbox */
+    min-height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,9 +176,9 @@ body {
     border: 2px solid var(--crema);
     border-radius: 20px;
     padding: 2.5rem;
+    /* width 100% + max-width hace que sea responsive: en PC mide hasta 450px y en celular se adapta al ancho */
     width: 100%;
     max-width: 450px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .login-card h2 {
@@ -186,6 +195,7 @@ body {
     margin-bottom: 2rem;
 }
 
+/* CAMPOS DEL FORMULARIO DE LOGIN */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -212,6 +222,7 @@ body {
     border-color: var(--celeste);
 }
 
+/* BOTONES DEL LOGIN */
 .btn-primary {
     width: 100%;
     border: none;
@@ -233,7 +244,7 @@ body {
 
 .btn-quick-access {
     width: 100%;
-    border: 2px var(--lila);
+    border: 2px solid var(--lila);
     background: #fbf9ff;
     color: #5d4493;
     font-weight: bold;
@@ -250,6 +261,7 @@ body {
     color: white;
 }
 
+/* MENSAJE DE ERROR */
 .alert-error {
     background: #ffe6e6;
     color: var(--error);
@@ -260,7 +272,7 @@ body {
     text-align: center;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE (adapta el diseño en tablets y celulares menores a 900px) */
 @media screen and (max-width: 900px) {
     .top-nav {
         flex-direction: column;
