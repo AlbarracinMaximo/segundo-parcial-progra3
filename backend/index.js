@@ -13,6 +13,8 @@ import environments from "./src/config/environments.js";
 import adminRoutes from "./src/routes/admin.routes.js";
 //Importa la conexión a la base de datos, permite ejecutar consultas SQL desde este archivo
 import connection from "./src/database/db.js";
+//
+import productRoutes from "./src/routes/product.routes.js";
 
 
 /*==================
@@ -48,6 +50,8 @@ app.get("/", (req, res) => {
 // Redirijo todas las peticiones que empiecen con /api/admin al modulo admin.routes.js
 // Por ejemplo, la ruta /login definida dentro de adminRoutes queda accesible en POST /api/admin/login
 app.use("/api/admin", adminRoutes);
+
+app.use("/api/productos", productRoutes);
 
 //async se usa para definir que la operacion sera asincrona, es decir puede tardar un tiempo en completarse, se la implementa acá porque voy a usar el AWAIT
 app.get("/productos", async (req, res) => {
