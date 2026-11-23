@@ -1,15 +1,15 @@
-//Establece la conexión entre la app y la bd de mysql
+// Establece la conexion entre la aplicacion backend y la base de datos MySQL
 
-//Importamos la libreria mysql basada en promesas (es la promesa de que en algun momento se tendrá una respuesta, pero no será inmediato, esto se usa para poder aplicar asincronia)
+// Importamos el modulo mysql2 en modo promesas para poder hacer consultas asincronas (con async/await) a la BBDD
 import mysql from "mysql2/promise";
 
-//importa las configuraciones guardadas en el archivo de environments (es decir las variables contenidas en .env)
+// Importamos las configuraciones guardadas en environments.js (es decir, las variables traidas desde el .env)
 import environments from "../config/environments.js";
 
-//guarda en una constante la propiedad de database que tengo en enviroments
+// Extraemos (con destructuring) la propiedad database del objeto environments
 const { database } = environments;
 
-//crea un pool de conexiones a mysql (pool = conjunto de conexiones reutilizable)
+// Creamos un pool de conexiones a MySQL (pool = conjunto de conexiones reutilizables)
 const connection = mysql.createPool({
     host: database.host,
     database: database.name,
@@ -17,5 +17,15 @@ const connection = mysql.createPool({
     password: database.password
 });
 
-//exporta la conexion para poder usarla en otros archivos del proyecto
+// Exportamos el pool de conexiones para poder ejecutar consultas SQL desde otros archivos del proyecto
 export default connection;
+
+/*
+- mysql2/promise es el modulo que nos permite conectarnos a MySQL usando promesas (async/await).
+- createPool es una funcion que crea un grupo (pool) de conexiones a la BBDD:
+    - Gestiona las conexiones automaticamente y las reutiliza en lugar de abrir y cerrar una nueva en cada consulta.
+    - Se conecta a la BBDD usando los parametros host, database, user y password que vienen del .env.
+    - Por defecto permite abrir varias conexiones simultaneas (hasta 10).
+    - Gracias a mysql2/promise podemos usar await connection.query() para ejecutar sentencias SQL.
+- Este objeto connection es el que importamos en las rutas o modelos para consultar la base de datos.
+*/

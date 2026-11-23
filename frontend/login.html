@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Permite que la pagina se adapte correctamente a pantallas de celulares y computadoras (responsive) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Administrador - Patitas PetShop</title>
+
+    <!-- Hoja de estilos CSS externa -->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+    <!-- Barra de navegacion superior (presente en las pantallas con nombre de la app, alumnos y navegacion) -->
+    <header class="top-nav">
+
+        <div class="nav-logo">
+            <span class="logo-text">Patitas PetShop</span>
+        </div>
+
+        <div class="nav-team">
+            <span>Alumnos: Juliana Sciaini & Máximo Albarracín</span>
+        </div>
+
+        <div class="nav-actions">
+            <!-- Enlace para volver a la vista principal del cliente (autoservicio) sin escribir rutas a mano -->
+            <a href="./index.html" class="btn-secondary">Volver al Autoservicio</a>
+        </div>
+
+    </header>
+
+    <!-- Contenido principal de la pantalla de login -->
+    <main class="login-container">
+
+        <section class="login-card">
+
+            <h2>Panel de Administrador</h2>
+            <p class="login-desc">Ingresa tus credenciales para gestionar productos y ventas</p>
+
+            <!-- Formulario de inicio de sesion del administrador
+                 El envio se intercepta desde login.js con event.preventDefault() para enviar
+                 usuario y password en formato JSON via fetch hacia POST http://localhost:3000/api/admin/login -->
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <!-- id="usuario" permite capturar el valor desde JavaScript; required valida que no quede vacio -->
+                    <input
+                        type="text"
+                        id="usuario"
+                        name="usuario"
+                        placeholder="Ej: admin1"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <!-- type="password" oculta los caracteres que escribe el usuario -->
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="••••••••"
+                        required>
+                </div>
+
+                <!-- Contenedor donde login.js mostrara los mensajes de error (arranca oculto con display: none) -->
+                <div id="loginError" class="alert-error" style="display: none;"></div>
+
+                <!-- type="submit" dispara el evento submit del formulario para validar e iniciar sesion -->
+                <button type="submit" class="btn-primary">
+                    Ingresar
+                </button>
+
+                <!-- type="button" evita que envie el formulario; solo ejecuta el evento click en login.js
+                     para autocompletar las credenciales de prueba y agilizar el testing a los profes -->
+                <button type="button" id="btnAccesoRapido" class="btn-quick-access">
+                    Acceso Rapido (Tester / Profesor)
+                </button>
+
+            </form>
+
+        </section>
+        
+    </main>
+
+    <!-- Cargamos el script al final del body para asegurarnos de que todos los elementos HTML ya existan en el DOM -->
+    <script src="./js/login.js"></script>
+</body>
+
+</html>
