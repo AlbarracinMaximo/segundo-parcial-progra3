@@ -15,7 +15,7 @@ const getProducts = async (req, res) => {
 
 const getProduct = async (req, res) => {
     try {
-        const id = req.params.id;
+        const id = req.id;
 
         const product =
             await ProductModel.getProductById(id);
@@ -57,7 +57,7 @@ const updateProduct = async (req, res) => {
 
     try {
 
-        const id = req.params.id;
+        const id = req.id;
 
         await ProductModel.updateProduct(
             id,
@@ -82,7 +82,7 @@ const deleteProduct = async (req, res) => {
 
     try {
 
-        const id = req.params.id;
+        const id = req.id;
 
         await ProductModel.deactivateProduct(id);
 

@@ -45,11 +45,12 @@ async function cargarProductos() {
 
             <td>
 
-                <button
-                    class="btn-editar"
-                >
-                    Editar
-                </button>
+            <button
+                class="btn-editar"
+                onclick="editarProducto(${producto.id_producto})"
+            >
+                Editar
+            </button>
 
                 <button
                     class="btn-desactivar"
@@ -77,6 +78,14 @@ async function(id) {
     );
 
     cargarProductos();
+
+};
+
+window.editarProducto =
+function(id){
+
+    window.location.href =
+        `editar-producto.html?id=${id}`;
 
 };
 

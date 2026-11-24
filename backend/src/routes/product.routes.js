@@ -9,16 +9,38 @@ import {
 }
 from "../controllers/product.controllers.js";
 
+import {
+    validateId,
+    validateProduct
+}
+from "../middlewares/product.middleware.js";
+
 const router = Router();
 
 router.get("/", getProducts);
 
-router.get("/:id", getProduct);
+router.get(
+    "/:id",
+    validateId,
+    getProduct
+);
 
-router.post("/", createProduct);
+router.post(
+    "/",
+    validateProduct,
+    createProduct
+);
 
-router.put("/:id", updateProduct);
+router.put(
+    "/:id",
+    validateProduct,
+    updateProduct
+);
 
-router.delete("/:id", deleteProduct);
+router.delete(
+    "/:id",
+    validateId,
+    deleteProduct
+);
 
 export default router;
