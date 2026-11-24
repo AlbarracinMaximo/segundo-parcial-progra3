@@ -1,0 +1,143 @@
+<!-- Este archivo representa la operacion UPDATE del CRUD-->
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Producto</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="./assets/favicon.png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/styles.css"
+    >
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-team">
+            <span>Alumnos: Juliana Sciaini & Máximo Albarracín</span>
+        </div>
+    </header>
+
+    <div class="login-container">
+
+        <!-- tarjeta visual utilizada para mostrar el formulario de edición -->
+        <div class="login-card">
+
+            <h2>Editar Producto</h2>
+
+        <!-- formulario encargado de modificar la información de un producto -->
+        <form id="editForm">
+
+            <!-- required obliga al usuario a completar el campo antes de enviar el formulario -->
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" id="nombre" required>
+            </div>
+
+            <!-- textarea se utiliza para textos extensos como descripciones de productos -->
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea id="descripcion" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Precio</label>
+                <input type="number" id="precio" required>
+            </div>
+
+            <div class="form-group">
+                <label>Stock</label>
+                <input type="number" id="stock" required>
+            </div>
+
+            <div class="form-group">
+                <label>Imagen</label>
+                <input type="text" id="imagen" required>
+            </div>
+
+            <div class="form-group">
+                <label>Categoría</label>
+                
+                <!-- select muestra una lista desplegable de opciones predefinidas -->
+                <select id="categoria">
+
+                    <option value="Alimentos">
+                        Alimentos
+                    </option>
+
+                    <option value="Accesorios">
+                        Accesorios
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Especie</label>
+
+                <select id="especie">
+
+                    <option value="Perro">
+                        Perro
+                    </option>
+
+                    <option value="Gato">
+                        Gato
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                <label>Edad</label>
+
+                <select id="edad">
+
+                    <option value="Cachorro">
+                        Cachorro
+                    </option>
+
+                    <option value="Adulto">
+                        Adulto
+                    </option>
+
+                    <option value="Senior">
+                        Senior
+                    </option>
+
+                    <option value="Todas">
+                        Todas
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn-primary"
+            >
+                Guardar Cambios
+            </button>
+
+        </form>
+
+        </div>
+
+    </div>
+
+    <script src="./js/editar-producto.js"></script>
+
+</body>
+
+</html>

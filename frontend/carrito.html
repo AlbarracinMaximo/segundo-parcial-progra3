@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="./assets/favicon.png"
+    >
+
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+    <!-- barra superior de navegación -->
+    <header class="top-nav">
+        <div class="nav-logo">
+            <span class="logo-text">
+                Patitas PetShop
+            </span>
+        </div>
+        <div class="nav-team">
+            <span>Alumnos: Juliana Sciaini & Máximo Albarracín</span>
+        </div>
+    </header>
+
+<!-- contenido principal de la página -->
+    <main>
+
+        <h1 class="titulo-carrito">
+            Mi Carrito
+        </h1>
+
+        <!-- contenedor vacio donde JavaScript insertará dinámicamente los productos -->
+        <div id="contenedorCarrito"></div>
+
+        <!-- muestra el importe total del carrito -->
+        <h2 id="totalCarrito"></h2>
+
+        <div class= "nav-buttons">
+            <button id="btnFinalizar" class="btn-secondary">
+                Finalizar Compra
+            </button>
+            <a href="productos.html" class="btn-secondary">
+                Volver
+            </a>
+        </div>
+
+    </main>
+
+    <!-- carga el archivo JavaScript encargado de gestionar el carrito -->
+    <script src="./js/carrito.js"></script>
+
+</body>
+
+</html>

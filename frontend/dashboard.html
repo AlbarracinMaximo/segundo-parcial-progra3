@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="./assets/favicon.png"
+    >
+
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <!-- barra superior de navegación -->
+    <header class="top-nav">
+
+        <div class="nav-logo">
+            <span class="logo-text">
+                Patitas PetShop
+            </span>
+        </div>
+
+        <div class="nav-team">
+            <span>Alumnos: Juliana Sciaini & Máximo Albarracín</span>
+        </div>
+
+        <div class="nav-actions">
+            <a href="./index.html" class="btn-secondary">Volver al Autoservicio</a>
+        </div>
+
+    </header>
+
+    <!-- contenido principal del dashboard -->
+    <main class="dashboard-container">
+
+        <h1 class="titulo-dashboard">
+            Administracion de Productos
+        </h1>
+
+        <p id="cantidadProductos"></p>
+
+        <table
+            id="tabla-productos"
+            class="tabla-productos"
+        >
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+
+            </thead>
+
+<!-- tbody vacío que será completado dinámicamente desde dashboard.js -->
+            <tbody id="productosBody">
+
+            </tbody>
+
+        </table>
+
+    </main>
+    
+    <!-- carga el archivo JavaScript encargado de administrar el dashboard -->
+    <script src="./js/dashboard.js"></script>
+
+</body>
+
+</html>
