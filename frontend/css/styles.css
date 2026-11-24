@@ -383,3 +383,78 @@ body {
 #paginacion button:hover{
     background:var(--rosa);
 }
+
+/*DASHBOARD*/
+.dashboard-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+#cantidadProductos{
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #666;
+}
+
+.titulo-dashboard {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--texto);
+}
+
+.tabla-productos {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,.1);
+}
+
+.tabla-productos th {
+    background: var(--celeste);
+    color: var(--texto);
+    padding: 15px;
+}
+
+.tabla-productos td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.tabla-productos tr:hover {
+    background: #fafafa;
+}
+
+.btn-editar {
+    background: var(--crema);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .3s;
+    margin-right: 5px;
+}
+
+.btn-editar:hover {
+    background: var(--rosa);
+    transform: translateY(-2px);
+}
+
+.btn-desactivar {
+    background: #ffbebe;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn-desactivar:hover {
+    background: #ff8c8c;
+    transform: translateY(-2px);
+}
+

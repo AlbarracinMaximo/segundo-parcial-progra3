@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+    <header class="top-nav">
+
+        <div class="nav-logo">
+            <span class="logo-text">
+                Patitas PetShop
+            </span>
+        </div>
+
+    </header>
+
+    <main class="dashboard-container">
+
+        <h1 class="titulo-dashboard">
+            Administración de Productos
+        </h1>
+
+        <p id="cantidadProductos"></p>
+
+        <table
+            id="tabla-productos"
+            class="tabla-productos"
+        >
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="productosBody">
+
+            </tbody>
+
+        </table>
+
+    </main>
+
+    <script src="./js/dashboard.js"></script>
+
+</body>
+
+</html>
