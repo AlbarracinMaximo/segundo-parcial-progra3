@@ -1,5 +1,10 @@
 //este archivo administra el dashboard del administrador, mostrando productos y permitiendo editarlos, desactivarlos o reactivarlos
 
+// Verificamos que el administrador haya iniciado sesion antes de ingresar al panel
+if (!sessionStorage.getItem("adminUsuario")) {
+    window.location.href = "login.html";
+}
+
 //obtiene el cuerpo de la tabla donde se cargarán los productos
 //getElementById permite buscar elementos del HTML utilizando su atributo id para poder modificar su contenido
 const productosBody =

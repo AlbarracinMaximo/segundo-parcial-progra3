@@ -1,5 +1,10 @@
 //este archivo permite editar un producto existente
 
+// Verificamos que el administrador haya iniciado sesion antes de ingresar al panel
+if (!sessionStorage.getItem("adminUsuario")) {
+    window.location.href = "login.html";
+}
+
 //obtiene el id del producto seleccionado previamente y almacenado temporalmente en sessionStorage
 const idProducto =
     sessionStorage.getItem(

@@ -1,4 +1,10 @@
 // Gestiona el formulario de alta de nuevos productos y envia los datos al backend mediante POST /api/productos
+
+// Verificamos que el administrador haya iniciado sesion antes de ingresar al panel
+if (!sessionStorage.getItem("adminUsuario")) {
+    window.location.href = "login.html";
+}
+
 /*==================================
     Referencias al DOM y Config
 ==================================*/
