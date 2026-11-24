@@ -1,8 +1,26 @@
 <%- include("partials/head.ejs") %>
 
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="./assets/images/favicon.png"
+    >
+
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <!-- barra superior de navegación -->
     <header class="top-nav">
+
         <div class="nav-logo">
-            <span class="logo-text">Patitas PetShop</span>
+            <span class="logo-text">
+                Patitas PetShop
+            </span>
         </div>
 
         <div class="nav-team">
@@ -10,17 +28,28 @@
         </div>
 
         <div class="nav-actions">
-            <a href="/index.html" class="btn-secondary">Volver al Autoservicio</a>
-            <a href="/dashboard/alta" class="btn-admin-link">+ Agregar Producto</a>
+            <a href="./index.html" class="btn-secondary">Volver al Autoservicio</a>
+            <a href="./alta-producto.html" class="btn-admin-link">+ Agregar Producto</a>
         </div>
+
     </header>
 
+    <!-- contenido principal del dashboard -->
     <main class="dashboard-container">
-        <h1 class="titulo-dashboard">Administracion de Productos</h1>
+
+        <h1 class="titulo-dashboard">
+            Administracion de Productos
+        </h1>
+
         <p id="cantidadProductos"></p>
 
-        <table id="tabla-productos" class="tabla-productos">
+        <table
+            id="tabla-productos"
+            class="tabla-productos"
+        >
+
             <thead>
+
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
@@ -29,10 +58,49 @@
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
+
             </thead>
-            <tbody id="productosBody"></tbody>
+
+<!-- tbody vacío que será completado dinámicamente desde dashboard.js -->
+            <tbody id="productosBody">
+
+            </tbody>
+
         </table>
+
+        <div id="modalConfirmacion" class="modal">
+            <div class="modal-content">
+                <h3>Confirmar acción</h3>
+
+                <p id="mensajeModal">
+                    ¿Está seguro de realizar esta acción?
+                </p>
+
+                <div class="modal-actions">
+                    <button
+                        id="btnConfirmar"
+                        class="btn-primary"
+                    >
+                        Confirmar
+                    </button>
+
+                    <button
+                        id="btnCancelar"
+                        class="btn-secondary"
+                    >
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </main>
+    
+    <!-- carga el archivo JavaScript encargado de administrar el dashboard -->
+    <script src="./js/dashboard.js"></script>
+
+</body>
+
 
     <script src="/js/dashboard.js"></script>
 

@@ -59,6 +59,20 @@ function mostrarProductos(listaProductos) {
     //forEach recorre todos los productos obtenidos para generar una tarjeta HTML por cada uno
     productosPagina.forEach(producto => {
 
+        //obtiene el carrito almacenado temporalmente
+        const carrito =
+            JSON.parse(
+                sessionStorage.getItem("carrito")
+            ) || [];
+
+        //some verifica si el producto ya fue agregado al carrito
+        const estaEnCarrito =
+            carrito.some(
+                item =>
+                    item.id_producto === producto.id_producto
+            );
+
+
         //las comillas invertidas permiten utilizar template literals, estos facilitan construir bloques HTML dinámicos incorporando variables
         //mediante sintaxis ${}
         contenedor.innerHTML += `
@@ -85,11 +99,26 @@ function mostrarProductos(listaProductos) {
                     Categoria: ${producto.categoria}
                 </p>
 
-                <button
-                    onclick="agregarCarrito(${producto.id_producto})"
-                >
-                    Agregar al carrito
-                </button>
+                ${
+                    estaEnCarrito
+                    ?
+                    `
+                    <button
+                        class="btn-eliminar-carrito"
+                        onclick="quitarDelCarrito(${producto.id_producto})"
+                    >
+                        Quitar del carrito
+                    </button>
+                    `
+                    :
+                    `
+                    <button
+                        onclick="agregarCarrito(${producto.id_producto})"
+                    >
+                        Agregar al carrito
+                    </button>
+                    `
+                }
 
             </div>
         `;
@@ -161,6 +190,38 @@ function agregarCarrito(idProducto) {
 
     alert("Producto agregado al carrito");
 
+    aplicarFiltros();
+
+}
+
+//elimina un producto del carrito desde la pantalla de productos
+function quitarDelCarrito(idProducto){
+
+    //obtiene el carrito almacenado
+    let carrito =
+        JSON.parse(
+            sessionStorage.getItem("carrito")
+        ) || [];
+
+    //filter crea un nuevo arreglo excluyendo el producto seleccionado
+    carrito =
+        carrito.filter(
+            item =>
+                item.id_producto !== idProducto
+        );
+
+    //actualiza el carrito almacenado
+    sessionStorage.setItem(
+        "carrito",
+        JSON.stringify(carrito)
+    );
+
+    alert(
+        "Producto eliminado del carrito"
+    );
+
+    //recarga las tarjetas para actualizar los botones
+    aplicarFiltros();
 }
 
 //filtra productos según la categoría y especie seleccionadas por el usuario
@@ -250,6 +311,10 @@ window.cambiarPagina = function(numeroPagina){
     aplicarFiltros();
 
 };
+
+// expone globalmente la funcion para poder ser llamada desde el atributo onclick de los botones html
+window.quitarDelCarrito =
+    quitarDelCarrito;
 
 //change se ejecuta cuando el usuario selecciona una opción diferente del filtro
 filtroCategoria.addEventListener(

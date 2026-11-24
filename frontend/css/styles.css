@@ -508,6 +508,37 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,.15);
 }
 
+/*MODAL CONFIRMACION*/
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 350px;
+    text-align: center;
+}
+
+.modal-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
 /*====================
     CARRITO
 ====================*/
