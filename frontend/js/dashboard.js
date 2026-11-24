@@ -131,38 +131,104 @@ async function cargarProductos() {
 
 }
 
-//realiza la baja lógica de un producto
-window.desactivarProducto =
-async function(id) {
-
-    //envía una petición DELETE al backend (si bien DELETE es para eliminar recursos, la programamos para que haga una baja logica, no fisica)
-    await fetch(
-        `http://localhost:3000/api/productos/${id}`,
-        {
-            method: "DELETE"
-        }
+const modal =
+    document.getElementById(
+        "modalConfirmacion"
     );
-    //recarga la tabla con la información actualizada
-    cargarProductos();
 
+const btnConfirmar =
+    document.getElementById(
+        "btnConfirmar"
+    );
+
+const btnCancelar =
+    document.getElementById(
+        "btnCancelar"
+    );
+
+const mensajeModal =
+    document.getElementById(
+        "mensajeModal"
+    );
+
+let accionPendiente = null;
+
+//realiza la baja lógica de un producto
+window.desactivarProducto =function(id){
+    // modal de confirmacion de la baja
+    //no realiza la baja inmediatamente, sino que espera la confirmación del administrador
+    mensajeModal.textContent =
+        "¿Está seguro de desactivar este producto?";
+
+    //muestra el modal en pantalla agregando la clase show (estaba oculto)
+    modal.classList.add("show");
+
+    //guarda la acción pendiente que se ejecutará únicamente si el usuario confirma
+    accionPendiente = async () => {
+    //envía una petición PUT al backend (para modificar el recurso de estado, de activo a inactivo)
+        await fetch(
+            `http://localhost:3000/api/productos/${id}`,
+            {
+                method: "DELETE"
+            }
+        );
+        //oculta el modal una vez completada la operación
+        modal.classList.remove("show");
+
+        cargarProductos();
+    };
 };
 
 // Window representa la ventana actual del navegador(es el objeto global del navegador), se utiliza para exponer la función de manera global y permitir que pueda ser invocada desde los botones HTML
 
 //reactiva un producto 
-window.activarProducto =
-async function(id){
-    //envía una petición PUT al backend (para modificar el recurso de estado, de inactivo a activo)
-    await fetch(
-        `http://localhost:3000/api/productos/activar/${id}`,
-        {
-            method: "PUT"
-        }
-    );
-    //actualiza el contenido de la tabla
-    cargarProductos();
+window.activarProducto = function(id){
+    // modal de confirmacion de la activacion
+    //no realiza la activacion inmediatamente, sino que espera la confirmación del administrador
+    mensajeModal.textContent =
+        "¿Está seguro de activar este producto?";
 
+    //muestra el modal al administrador
+    modal.classList.add("show");
+
+    //almacena la acción que será ejecutada luego de la confirmación
+    accionPendiente = async () => {
+    //envía una petición PUT al backend (para modificar el recurso de estado, de activo a inactivo)
+        await fetch(
+            `http://localhost:3000/api/productos/activar/${id}`,
+            {
+                method: "PUT"
+            }
+        );
+
+        //cierra el modal luego de completar la activación
+        modal.classList.remove("show");
+
+        cargarProductos();
+    };
 };
+
+//se ejecuta cuando el administrador presiona el botón Confirmar del modal
+//si existe una acción pendiente, la ejecuta
+btnConfirmar.addEventListener(
+    "click",
+    async () => {
+
+        if (accionPendiente) {
+            await accionPendiente();
+        }
+    }
+);
+
+//se ejecuta cuando el administrador presiona el botón Cancelar
+//cierra el modal sin realizar ninguna modificación
+btnCancelar.addEventListener(
+    "click",
+    () => {
+        modal.classList.remove("show");
+        accionPendiente = null;
+    }
+);
 
 //guarda el id del producto seleccionado y redirecciona a la pantalla de edición
 window.editarProducto = function(id){
