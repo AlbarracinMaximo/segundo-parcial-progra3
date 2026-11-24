@@ -9,7 +9,7 @@
 </head>
 
 <body>
-
+    <!-- barra superior de navegación -->
     <header class="top-nav">
 
         <div class="nav-logo">
@@ -18,12 +18,17 @@
             </span>
         </div>
 
+        <div class="nav-actions">
+            <a href="./index.html" class="btn-secondary">Volver al Autoservicio</a>
+        </div>
+
     </header>
 
+    <!-- contenido principal del dashboard -->
     <main class="dashboard-container">
 
         <h1 class="titulo-dashboard">
-            Administración de Productos
+            Administracion de Productos
         </h1>
 
         <p id="cantidadProductos"></p>
@@ -46,6 +51,7 @@
 
             </thead>
 
+<!-- tbody vacío que será completado dinámicamente desde dashboard.js -->
             <tbody id="productosBody">
 
             </tbody>
@@ -53,7 +59,8 @@
         </table>
 
     </main>
-
+    
+    <!-- carga el archivo JavaScript encargado de administrar el dashboard -->
     <script src="./js/dashboard.js"></script>
 
 </body>

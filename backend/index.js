@@ -1,4 +1,5 @@
-// Este doc crea el servidor express, define las rutas disponibles y pone el servidor en funcionmamiento
+//este archivo crea y configura el servidor backend de Express,
+//registra middlewares, rutas y pone el servidor en funcionamiento
 
 /*==================
     Importaciones
@@ -13,7 +14,7 @@ import environments from "./src/config/environments.js";
 import adminRoutes from "./src/routes/admin.routes.js";
 //Importa la conexión a la base de datos, permite ejecutar consultas SQL desde este archivo
 import connection from "./src/database/db.js";
-//
+//Importa el modulo con las rutas de los productos
 import productRoutes from "./src/routes/product.routes.js";
 
 
@@ -33,7 +34,8 @@ const PORT = environments.port || 3000;
 // Middleware CORS basico para permitir solicitudes desde otros origenes (como nuestro frontend)
 app.use(cors());
 
-// Cuando enviamos informacion en el body de la request (por ejemplo en POST y PUT), este middleware parsea el JSON recibido y lo convierte en un objeto JS disponible en req.body
+// Cuando enviamos informacion en el body de la request (por ejemplo en POST y PUT), este middleware parsea el JSON recibido y 
+// lo convierte en un objeto JS disponible en req.body, esto nos permite acceder a los datos desde los endpoints
 app.use(express.json());
 
 
@@ -47,12 +49,15 @@ app.get("/", (req, res) => {
     res.send("Backend funcionando");
 });
 
-// Redirijo todas las peticiones que empiecen con /api/admin al modulo admin.routes.js
+// Redirijo todas las peticiones que empiecen con /api/admin al archivo admin.routes.js
 // Por ejemplo, la ruta /login definida dentro de adminRoutes queda accesible en POST /api/admin/login
 app.use("/api/admin", adminRoutes);
 
+//redirecciona todas las rutas que comiencen con /api/productos
+//al archivo product.routes.js
 app.use("/api/productos", productRoutes);
 
+//endpoint de prueba para obtener todos los productos directamente desde la base de datos
 //async se usa para definir que la operacion sera asincrona, es decir puede tardar un tiempo en completarse, se la implementa acá porque voy a usar el AWAIT
 app.get("/productos", async (req, res) => {
 
@@ -64,7 +69,7 @@ app.get("/productos", async (req, res) => {
                 //codigo sql, obtengo los registros de la tabla indicada (productos)
                 "SELECT * FROM productos"
             );
-//convierto automaticamente los resultados que me dió la consulta en un JSON, y se los envio al cliente (por eso res)
+//convierto automaticamente los resultados que me dió la consulta en un JSON, y se los envio al usuario (por eso res)
         res.json(rows);
 
     } catch (error) {
@@ -77,16 +82,6 @@ app.get("/productos", async (req, res) => {
             error: error.message
         });
     }
-});
-
-/*=========================
-    Inicio del servidor
-=========================*/
-
-//inicia el servidor, quedando a la escucha de peticiones/solicitudes. Lo inicia en el puerto 3000
-app.listen(3000, () => {
-    //check en consola de inicio correcto del servidor
-    console.log("Servidor iniciado en puerto 3000");
 });
 
 /*=========================

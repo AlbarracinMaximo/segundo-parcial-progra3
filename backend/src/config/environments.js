@@ -10,7 +10,12 @@ dotenv.config({ override: true });
 // Creamos y exportamos un objeto default con la configuracion del servidor y la BBDD
 // El operador || define un valor por defecto en caso de que esa variable no este cargada en el .env
 export default {
+    
+    //define el puerto donde se ejecutará el servidor
+    //si no existe PORT en el archivo .env se utiliza 3000
     port: process.env.PORT || 3000,
+
+    //agrupa la configuración de conexión a la base de datos
     database: {
         host: process.env.DB_HOST || "localhost",
         name: process.env.DB_NAME || "petshop",

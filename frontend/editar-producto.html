@@ -1,3 +1,5 @@
+<!-- Este archivo representa la operacion UPDATE del CRUD-->
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,17 +17,21 @@
 
     <div class="login-container">
 
+        <!-- tarjeta visual utilizada para mostrar el formulario de edición -->
         <div class="login-card">
 
             <h2>Editar Producto</h2>
 
+        <!-- formulario encargado de modificar la información de un producto -->
         <form id="editForm">
 
+            <!-- required obliga al usuario a completar el campo antes de enviar el formulario -->
             <div class="form-group">
                 <label>Nombre</label>
                 <input type="text" id="nombre" required>
             </div>
 
+            <!-- textarea se utiliza para textos extensos como descripciones de productos -->
             <div class="form-group">
                 <label>Descripción</label>
                 <textarea id="descripcion" required></textarea>
@@ -48,7 +54,8 @@
 
             <div class="form-group">
                 <label>Categoría</label>
-
+                
+                <!-- select muestra una lista desplegable de opciones predefinidas -->
                 <select id="categoria">
 
                     <option value="Alimentos">

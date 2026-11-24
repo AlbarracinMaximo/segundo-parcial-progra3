@@ -9,7 +9,7 @@ import environments from "../config/environments.js";
 // Extraemos (con destructuring) la propiedad database del objeto environments
 const { database } = environments;
 
-// Creamos un pool de conexiones a MySQL (pool = conjunto de conexiones reutilizables)
+// Creamos un pool de conexiones a MySQL (pool = conjunto de conexiones abiertas y reutilizables, asi no creo una nueva conexion en cada consulta)
 const connection = mysql.createPool({
     host: database.host,
     database: database.name,
