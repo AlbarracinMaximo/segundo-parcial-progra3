@@ -35,6 +35,38 @@ const ProductModel = {
 
     },
 
+    //obtiene una cantidad limitada de productos activos para implementar paginación desde la base de datos
+    async getProductsPaginated(page, limit){
+
+        //calcula la posición inicial desde donde la base de datos debe comenzar a devolver registros
+        const offset =
+            (page - 1) * limit;
+
+        const [rows] =
+            //ejecuta una consulta SQL paginada
+            //LIMIT indica cuántos registros devolver
+            //OFFSET indica desde qué posición comenzar
+            await connection.query(
+
+                `
+                SELECT *
+                FROM productos
+                WHERE estado = 1
+                LIMIT ?
+                OFFSET ?
+                `,
+
+                [
+                    limit,
+                    offset
+                ]
+
+            );
+
+        return rows;
+
+    },
+
     //crea un nuevo producto en la base de datos
     async createProduct(producto) {
     //extrae los datos recibidos del controlador

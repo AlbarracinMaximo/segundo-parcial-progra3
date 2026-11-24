@@ -64,6 +64,45 @@ const getProductsAdmin = async (req, res) => {
 
 };
 
+//controlador encargado de obtener productos en forma paginada
+const getProductsPaginated =
+async (req,res)=>{
+
+    try{
+        //obtiene el número de página enviado desde la URL
+        const page =
+            Number(
+                req.query.page
+            ) || 1;
+        //obtiene la cantidad de registros que se mostrarán por página
+        const limit =
+            Number(
+                req.query.limit
+            ) || 5;
+
+        //solicita al modelo los productos correspondientes a la página indicada
+        const products =
+
+            await ProductModel
+                .getProductsPaginated(
+                    page,
+                    limit
+                );
+
+        res.status(200).json(
+            products
+        );
+
+    }catch(error){
+
+        res.status(500).json({
+            error:error.message
+        });
+
+    }
+
+};
+
 //controlador encargado de crear un nuevo producto
 const createProduct = async (req, res) => {
 
@@ -171,5 +210,6 @@ export {
     updateProduct,
     deleteProduct,
     activateProduct,
-    getProductsAdmin
+    getProductsAdmin,
+    getProductsPaginated
 };

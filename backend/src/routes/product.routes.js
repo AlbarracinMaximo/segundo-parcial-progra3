@@ -11,7 +11,8 @@ import {
     updateProduct,
     deleteProduct,
     activateProduct,
-    getProductsAdmin
+    getProductsAdmin,
+    getProductsPaginated
 }
 from "../controllers/product.controllers.js";
 
@@ -32,6 +33,12 @@ router.get("/", getProducts);
 router.get(
     "/admin/todos",
     getProductsAdmin
+);
+
+//ruta GET utilizada para obtener productos de forma paginada
+router.get(
+    "/paginated",
+    getProductsPaginated
 );
 
 //ruta GET utilizada para obtener un producto específico según el id recibido por parámetro
