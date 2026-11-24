@@ -16,6 +16,8 @@ import adminRoutes from "./src/routes/admin.routes.js";
 import connection from "./src/database/db.js";
 //Importa el modulo con las rutas de los productos
 import productRoutes from "./src/routes/product.routes.js";
+// Importa el modulo con las rutas de ventas
+import ventasRoutes from "./src/routes/ventas.routes.js";
 
 
 /*==================
@@ -56,6 +58,9 @@ app.use("/api/admin", adminRoutes);
 //redirecciona todas las rutas que comiencen con /api/productos
 //al archivo product.routes.js
 app.use("/api/productos", productRoutes);
+
+// Redirecciona todas las rutas que comiencen con /api/ventas a ventas.routes.js
+app.use("/api/ventas", ventasRoutes);
 
 //endpoint de prueba para obtener todos los productos directamente desde la base de datos
 //async se usa para definir que la operacion sera asincrona, es decir puede tardar un tiempo en completarse, se la implementa acá porque voy a usar el AWAIT

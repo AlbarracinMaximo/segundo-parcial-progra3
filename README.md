@@ -107,7 +107,14 @@ Gestiona el acceso a la base de datos para las operaciones relacionadas con prod
 ### product.middleware.js
 Contiene middlewares de validación utilizados para verificar identificadores y datos de productos antes de ejecutar operaciones sobre la base de datos.
 
----
+### ventas.routes.js
+Define las rutas de la API para registrar nuevas ventas (`POST /api/ventas`) y consultar el listado de ventas registradas (`GET /api/ventas`).
+
+### ventas.controllers.js
+Valida los datos recibidos al confirmar una compra, coordina el guardado de la venta y su detalle de productos, y devuelve el comprobante en formato JSON.
+
+### ventas.models.js
+Ejecuta las consultas SQL sobre las tablas `ventas` y `detalle_venta` para persistir compras y consultar los productos asociados mediante `JOIN`.
 
 ## Frontend
 
@@ -143,6 +150,18 @@ Obtiene los productos desde la API y genera dinámicamente el listado administra
 
 ### editar-producto.html
 Formulario utilizado para modificar la información de un producto existente.
+
+### alta-producto.html
+Formulario del panel de administrador utilizado para dar de alta un nuevo producto en el catálogo.
+
+### alta-producto.js
+Captura los datos del formulario de alta, los valida y los envía al backend mediante una petición `POST` a `/api/productos`.
+
+### ticket.html
+Pantalla final que muestra el comprobante de compra con los datos del cliente, fecha, productos adquiridos y total pagado.
+
+### ticket.js
+Recupera los datos de la venta desde `sessionStorage`, genera y descarga el comprobante en PDF mediante `jsPDF` y reinicia el sistema de autoservicio al salir.
 
 ### editar-producto.js
 Obtiene los datos actuales de un producto, carga la información en el formulario y envía las modificaciones al backend mediante una petición PUT.

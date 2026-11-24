@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket de Compra - Patitas PetShop</title>
+    <link rel="icon" type="image/png" href="./assets/images/favicon.png">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <!-- Barra superior de navegacion -->
+    <header class="top-nav">
+        <div class="nav-logo">
+            <span class="logo-text">Patitas PetShop</span>
+        </div>
+
+        <div class="nav-team">
+            <span>Alumnos: Juliana Sciaini & Máximo Albarracín</span>
+        </div>
+
+        <div class="nav-actions">
+            <a href="./login.html" class="btn-admin-link">Admin</a>
+        </div>
+
+    </header>
+
+    <!-- Contenido principal del ticket -->
+    <main class="login-container">
+        <section class="ticket-card">
+            <h2>Ticket de Compra</h2>
+
+            <p class="login-desc">Patitas PetShop - Comprobante de autoservicio</p>
+
+            <!-- Datos generales de la compra -->
+            <div class="ticket-datos">
+                <p><strong>N° de Venta:</strong> <span id="ticketId">-</span></p>
+                <p><strong>Cliente:</strong> <span id="ticketCliente">-</span></p>
+                <p><strong>Fecha:</strong> <span id="ticketFecha">-</span></p>
+            </div>
+
+            <!-- Listado dinamico de productos comprados -->
+            <div id="ticketProductos" class="ticket-lista"></div>
+
+            <!-- Total final -->
+            <p class="ticket-total">Total pagado: $<span id="ticketTotal">0</span></p>
+
+            <!-- Boton para descargar el comprobante en PDF usando jsPDF -->
+            <button type="button" id="btnDescargarPdf" class="btn-primary">
+                Descargar Ticket en PDF
+            </button>
+
+            <!-- Boton para reiniciar el autoservicio y volver a la pantalla de bienvenida -->
+            <button type="button" id="btnSalir" class="btn-quick-access">
+                Finalizar y Salir
+            </button>
+        </section>
+    </main>
+
+    <!-- Libreria jsPDF desde CDN (recomendada en el README de la catedra para generar PDFs) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="./js/ticket.js"></script>
+
+</body>
+</html>
