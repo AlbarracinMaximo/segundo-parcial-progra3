@@ -31,6 +31,28 @@ const getProduct = async (req, res) => {
     }
 };
 
+const getProductsAdmin = async (req, res) => {
+
+    try {
+
+        const products =
+            await ProductModel
+                .getAllProductsAdmin();
+
+        res.status(200)
+            .json(products);
+
+    } catch (error) {
+
+        res.status(500)
+            .json({
+                error: error.message
+            });
+
+    }
+
+};
+
 const createProduct = async (req, res) => {
 
     try {
@@ -57,6 +79,9 @@ const updateProduct = async (req, res) => {
 
     try {
 
+        console.log("ID:", req.id);
+        console.log("BODY:", req.body);
+
         const id = req.id;
 
         await ProductModel.updateProduct(
@@ -65,7 +90,8 @@ const updateProduct = async (req, res) => {
         );
 
         res.status(200).json({
-            mensaje: "Producto actualizado"
+            mensaje:
+            "Producto actualizado"
         });
 
     } catch (error) {
@@ -100,10 +126,40 @@ const deleteProduct = async (req, res) => {
 
 };
 
+const activateProduct = async (
+    req,
+    res
+) => {
+
+    try {
+
+        const id = req.id;
+
+        await ProductModel.activateProduct(
+            id
+        );
+
+        res.status(200).json({
+            mensaje:
+            "Producto activado correctamente"
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+
+    }
+
+};
+
 export {
     getProducts,
     getProduct,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    activateProduct,
+    getProductsAdmin
 };

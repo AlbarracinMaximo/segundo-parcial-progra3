@@ -17,6 +17,18 @@ const ProductModel = {
         return rows[0];
     },
 
+    async getAllProductsAdmin() {
+
+        const [rows] =
+            await connection.query(
+                "SELECT * FROM productos"
+            );
+
+        return rows;
+
+    },
+
+
     async createProduct(producto) {
 
     const {
@@ -116,9 +128,30 @@ async deactivateProduct(id) {
     );
 
     return result;
+},
+
+async activateProduct(id) {
+
+    const [result] =
+        await connection.query(
+
+            `
+            UPDATE productos
+            SET estado = 1
+            WHERE id_producto = ?
+            `,
+
+            [id]
+
+        );
+
+    return result;
+
 }
 
 };
+
+
 
 
 

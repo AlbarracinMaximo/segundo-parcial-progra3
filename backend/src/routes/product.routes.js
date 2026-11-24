@@ -5,7 +5,9 @@ import {
     getProduct,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    activateProduct,
+    getProductsAdmin
 }
 from "../controllers/product.controllers.js";
 
@@ -18,6 +20,11 @@ from "../middlewares/product.middleware.js";
 const router = Router();
 
 router.get("/", getProducts);
+
+router.get(
+    "/admin/todos",
+    getProductsAdmin
+);
 
 router.get(
     "/:id",
@@ -33,6 +40,7 @@ router.post(
 
 router.put(
     "/:id",
+    validateId,
     validateProduct,
     updateProduct
 );
@@ -41,6 +49,12 @@ router.delete(
     "/:id",
     validateId,
     deleteProduct
+);
+
+router.put(
+    "/activar/:id",
+    validateId,
+    activateProduct
 );
 
 export default router;

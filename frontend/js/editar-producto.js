@@ -1,36 +1,164 @@
-const params =
-    new URLSearchParams(
-        window.location.search
+const idProducto =
+    sessionStorage.getItem(
+        "productoEditar"
     );
 
-const id =
-    params.get("id");
+const form =
+    document.getElementById(
+        "editForm"
+    );
 
 async function cargarProducto() {
 
-    const response =
-        await fetch(
-            `http://localhost:3000/api/productos/${id}`
-        );
+    try {
 
-    const producto =
-        await response.json();
+        const response =
+            await fetch(
+                `http://localhost:3000/api/productos/${idProducto}`
+            );
 
-    document.getElementById(
-        "nombre"
-    ).value =
-        producto.nombre;
+        const producto =
+            await response.json();
 
-    document.getElementById(
-        "precio"
-    ).value =
-        producto.precio;
+            document.getElementById(
+                "nombre"
+            ).value =
+                producto.nombre;
 
-    document.getElementById(
-        "stock"
-    ).value =
-        producto.stock;
+            document.getElementById(
+                "descripcion"
+            ).value =
+                producto.descripcion;
+
+            document.getElementById(
+                "precio"
+            ).value =
+                producto.precio;
+
+            document.getElementById(
+                "stock"
+            ).value =
+                producto.stock;
+
+            document.getElementById(
+                "imagen"
+            ).value =
+                producto.imagen;
+
+            document.getElementById(
+                "categoria"
+            ).value =
+                producto.categoria;
+
+            document.getElementById(
+                "especie"
+            ).value =
+                producto.especie;
+
+            document.getElementById(
+                "edad"
+            ).value =
+                producto.edad;
+
+    } catch(error){
+
+        console.error(error);
+
+    }
 
 }
+
+form.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+        const productoActualizado = {
+
+            nombre:
+                document.getElementById(
+                    "nombre"
+                ).value,
+
+            descripcion:
+                document.getElementById(
+                    "descripcion"
+                ).value,
+
+            precio:
+                Number(
+                    document.getElementById(
+                        "precio"
+                    ).value
+                ),
+
+            stock:
+                Number(
+                    document.getElementById(
+                        "stock"
+                    ).value
+                ),
+
+            imagen:
+                document.getElementById(
+                    "imagen"
+                ).value,
+
+            categoria:
+                document.getElementById(
+                    "categoria"
+                ).value,
+
+            especie:
+                document.getElementById(
+                    "especie"
+                ).value,
+
+            edad:
+                document.getElementById(
+                    "edad"
+                ).value
+
+        };
+
+        try {
+
+
+            await fetch(
+
+                `http://localhost:3000/api/productos/${idProducto}`,
+
+                {
+                    method: "PUT",
+
+                    headers: {
+                        "Content-Type":
+                        "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(
+                            productoActualizado
+                        )
+                }
+
+            );
+
+            alert(
+                "Producto actualizado"
+            );
+
+            window.location.href =
+                "dashboard.html";
+
+        } catch(error){
+
+            console.error(error);
+
+        }
+
+    }
+);
 
 cargarProducto();
