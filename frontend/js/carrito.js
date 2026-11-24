@@ -73,3 +73,99 @@ function eliminarProducto(index){
     location.reload();
 
 }
+
+/*================================================
+    Modal de confirmacion y registro de compra
+================================================*/
+const btnFinalizar = document.getElementById("btnFinalizar");
+const modalConfirmar = document.getElementById("modalConfirmar");
+const btnCancelarModal = document.getElementById("btnCancelarModal");
+const btnConfirmarModal = document.getElementById("btnConfirmarModal");
+const carritoError = document.getElementById("carritoError");
+
+const API_VENTAS_URL = "http://localhost:3000/api/ventas";
+
+// Como productos.js agrega cada producto con push(), esta funcion agrupa los repetidos y calcula su cantidad
+function agruparProductos(listaCarrito) {
+    const agrupados = [];
+    listaCarrito.forEach((prod) => {
+        // Buscamos si este producto ya fue agregado al arreglo agrupados
+        const existente = agrupados.find((item) => item.id_producto === prod.id_producto);
+        if (existente) {
+            existente.cantidad += 1;
+        } else {
+            agrupados.push({
+                id_producto: prod.id_producto,
+                nombre: prod.nombre,
+                precio: Number(prod.precio),
+                cantidad: 1
+            });
+        }
+    });
+    return agrupados;
+}
+
+// Al tocar "Finalizar Compra" validamos que el carrito no este vacio y abrimos el modal
+btnFinalizar.addEventListener("click", () => {
+    if (carrito.length === 0) {
+        alert("Tu carrito está vacío. Agregá al menos un producto para comprar.");
+        return;
+    }
+    carritoError.style.display = "none";
+    modalConfirmar.style.display = "flex";
+});
+
+// Boton "Cancelar" dentro del modal: simplemente lo cierra
+btnCancelarModal.addEventListener("click", () => {
+    modalConfirmar.style.display = "none";
+});
+
+// Boton "Si, confirmar": manda la venta al backend (POST /api/ventas) y redirige al ticket
+
+btnConfirmarModal.addEventListener("click", async () => {
+    const nombreCliente = sessionStorage.getItem("nombreCliente") || "Cliente";
+    const productosAgrupados = agruparProductos(carrito);
+
+    // Armamos el objeto con los datos que espera el endpoint POST /api/ventas
+    const datosVenta = {
+        nombre_cliente: nombreCliente,
+        total: total,
+        productos: productosAgrupados
+    };
+
+    try {
+        const response = await fetch(API_VENTAS_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datosVenta)
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.error || "No se pudo registrar la venta");
+        }
+
+        // Guardamos los datos del ticket en sessionStorage para mostrarlos en ticket.html
+        const ticket = {
+            id_venta: data.id_venta,
+            nombre_cliente: nombreCliente,
+            fecha: new Date().toLocaleString("es-AR"),
+            total: total,
+            productos: productosAgrupados
+        };
+
+        sessionStorage.setItem("ultimoTicket", JSON.stringify(ticket));
+        // Vaciamos el carrito porque la compra ya fue confirmada
+        sessionStorage.removeItem("carrito");
+
+        // Redirigimos a la pantalla del ticket
+        window.location.href = "ticket.html";
+
+        } catch (error) {
+        modalConfirmar.style.display = "none";
+        carritoError.textContent = error.message || "Error de conexion con el servidor";
+        carritoError.style.display = "block";
+        }
+    });
