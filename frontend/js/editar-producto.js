@@ -2,7 +2,7 @@
 
 // Verificamos que el administrador haya iniciado sesion antes de ingresar al panel
 if (!sessionStorage.getItem("adminUsuario")) {
-    window.location.href = "login.html";
+    window.location.href = "/login";
 }
 
 //obtiene el id del producto seleccionado previamente y almacenado temporalmente en sessionStorage
@@ -172,7 +172,7 @@ form.addEventListener(
             );
 
             window.location.href =
-                "dashboard.html";
+                "/dashboard";
 
         } catch(error){
 

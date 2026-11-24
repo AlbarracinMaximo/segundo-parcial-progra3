@@ -2,7 +2,7 @@
 
 // Verificamos que el administrador haya iniciado sesion antes de ingresar al panel
 if (!sessionStorage.getItem("adminUsuario")) {
-    window.location.href = "login.html";
+    window.location.href = "/login";
 }
 
 /*==================================
@@ -60,7 +60,7 @@ altaForm.addEventListener("submit", async (event) => {
 
         alert("Producto agregado correctamente");
         // Redirigimos al dashboard donde ya va a aparecer el nuevo producto listado
-        window.location.href = "dashboard.html";
+        window.location.href = "/dashboard";
 
     } catch (error) {
         altaError.textContent = error.message;
