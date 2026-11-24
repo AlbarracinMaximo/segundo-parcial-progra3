@@ -2,7 +2,7 @@
 
 // Verificamos que el administrador haya iniciado sesion antes de ingresar al panel
 if (!sessionStorage.getItem("adminUsuario")) {
-    window.location.href = "login.html";
+    window.location.href = "/login";
 }
 
 //obtiene el cuerpo de la tabla donde se cargarán los productos
@@ -181,7 +181,7 @@ window.editarProducto = function(id){
     );
 
     window.location.href =
-        "editar-producto.html";
+        "/dashboard/editar";
 
 };
 

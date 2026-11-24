@@ -1,0 +1,80 @@
+<%- include("partials/head.ejs") %>
+
+    <header class="top-nav">
+        <div class="nav-logo">
+            <span class="logo-text">Patitas PetShop</span>
+        </div>
+
+        <div class="nav-team">
+            <span>Alumnos: Juliana Sciaini & Máximo Albarracín</span>
+        </div>
+
+        <div class="nav-actions">
+            <a href="/dashboard" class="btn-secondary">Volver al Dashboard</a>
+        </div>
+    </header>
+
+    <main class="login-container">
+        <section class="login-card">
+            <h2>Editar Producto</h2>
+
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="precio">Precio</label>
+                    <input type="number" id="precio" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="stock">Stock</label>
+                    <input type="number" id="stock" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagen">Imagen</label>
+                    <input type="text" id="imagen" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="categoria">Categoría</label>
+                    <select id="categoria">
+                        <option value="Alimentos">Alimentos</option>
+                        <option value="Accesorios">Accesorios</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="especie">Especie</label>
+                    <select id="especie">
+                        <option value="Perro">Perro</option>
+                        <option value="Gato">Gato</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="edad">Edad</label>
+                    <select id="edad">
+                        <option value="Cachorro">Cachorro</option>
+                        <option value="Adulto">Adulto</option>
+                        <option value="Senior">Senior</option>
+                        <option value="Todos">Todos</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary">Guardar Cambios</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="/js/editar-producto.js"></script>
+
+<%- include("partials/footer.ejs") %>

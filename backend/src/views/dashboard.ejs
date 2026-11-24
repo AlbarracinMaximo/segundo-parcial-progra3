@@ -1,0 +1,39 @@
+<%- include("partials/head.ejs") %>
+
+    <header class="top-nav">
+        <div class="nav-logo">
+            <span class="logo-text">Patitas PetShop</span>
+        </div>
+
+        <div class="nav-team">
+            <span>Alumnos: Juliana Sciaini & Máximo Albarracín</span>
+        </div>
+
+        <div class="nav-actions">
+            <a href="/index.html" class="btn-secondary">Volver al Autoservicio</a>
+            <a href="/dashboard/alta" class="btn-admin-link">+ Agregar Producto</a>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <h1 class="titulo-dashboard">Administracion de Productos</h1>
+        <p id="cantidadProductos"></p>
+
+        <table id="tabla-productos" class="tabla-productos">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="productosBody"></tbody>
+        </table>
+    </main>
+
+    <script src="/js/dashboard.js"></script>
+
+<%- include("partials/footer.ejs") %>

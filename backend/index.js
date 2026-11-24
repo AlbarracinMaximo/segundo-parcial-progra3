@@ -18,6 +18,10 @@ import connection from "./src/database/db.js";
 import productRoutes from "./src/routes/product.routes.js";
 // Importa el modulo con las rutas de ventas
 import ventasRoutes from "./src/routes/ventas.routes.js";
+// Importamos __dirname y join para ubicar las carpetas de vistas EJS y archivos estaticos
+import { __dirname, join } from "./src/utils/index.js";
+// Importamos las rutas que renderizan las vistas EJS del administrador
+import viewRoutes from "./src/routes/view.routes.js";
 
 
 /*==================
@@ -28,6 +32,9 @@ const app = express();
 // Guardamos el puerto traido del .env (si no existe, usa el 3000 por defecto)
 const PORT = environments.port || 3000;
 
+// Configuramos EJS como motor de plantillas y le indicamos donde estan las vistas
+app.set("view engine", "ejs");
+app.set("views", join(__dirname, "src/views"));
 
 
 /*==================
@@ -39,6 +46,9 @@ app.use(cors());
 // Cuando enviamos informacion en el body de la request (por ejemplo en POST y PUT), este middleware parsea el JSON recibido y 
 // lo convierte en un objeto JS disponible en req.body, esto nos permite acceder a los datos desde los endpoints
 app.use(express.json());
+
+// Middleware para servir archivos estaticos (CSS, JS e imagenes) directamente desde la carpeta frontend
+app.use(express.static(join(__dirname, "../frontend")));
 
 
 /*==================
@@ -61,6 +71,9 @@ app.use("/api/productos", productRoutes);
 
 // Redirecciona todas las rutas que comiencen con /api/ventas a ventas.routes.js
 app.use("/api/ventas", ventasRoutes);
+
+// Rutas de vistas HTML renderizadas con EJS para el panel de administrador
+app.use("/", viewRoutes);
 
 //endpoint de prueba para obtener todos los productos directamente desde la base de datos
 //async se usa para definir que la operacion sera asincrona, es decir puede tardar un tiempo en completarse, se la implementa acá porque voy a usar el AWAIT

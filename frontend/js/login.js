@@ -71,8 +71,8 @@ loginForm.addEventListener("submit", async (event) => {
         // Mostramos un saludo de bienvenida con el nombre de usuario devuelto por el servidor
         alert(`¡Bienvenido/a ${data.usuario.usuario}!`);
 
-        // Redirigimos al panel de administracion (dashboard)
-        window.location.href = "dashboard.html";
+        // Redirigimos al panel de administracion (dashboard renderizado con EJS)
+        window.location.href = "/dashboard";
 
     } catch (error) {
         // Aca caen tanto los errores que lanzamos manualmente en !response.ok (400/401/500) como errores reales de red (si el servidor esta apagado)
