@@ -1,19 +1,5 @@
 <%- include("partials/head.ejs") %>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-
-    <link
-        rel="icon"
-        type="image/png"
-        href="./assets/images/favicon.png"
-    >
-
-    <link rel="stylesheet" href="./css/styles.css">
-</head>
-
-<body>
     <!-- barra superior de navegación -->
     <header class="top-nav">
 
@@ -28,8 +14,8 @@
         </div>
 
         <div class="nav-actions">
-            <a href="./index.html" class="btn-secondary">Volver al Autoservicio</a>
-            <a href="./alta-producto.html" class="btn-admin-link">+ Agregar Producto</a>
+            <a href="/index.html" class="btn-secondary">Volver al Autoservicio</a>
+            <a href="/dashboard/alta" class="btn-admin-link">+ Agregar Producto</a>
         </div>
 
     </header>
@@ -95,13 +81,8 @@
         </div>
 
     </main>
-    
+
     <!-- carga el archivo JavaScript encargado de administrar el dashboard -->
-    <script src="./js/dashboard.js"></script>
-
-</body>
-
-
     <script src="/js/dashboard.js"></script>
 
 <%- include("partials/footer.ejs") %>
