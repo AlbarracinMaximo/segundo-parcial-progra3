@@ -11,47 +11,63 @@
 
 <body>
 
-<main class="welcome">
+    <!-- Barra de navegacion superior -->
+    <header class="top-nav">
+        <div class="nav-logo">
+            <span class="logo-text">Patitas PetShop</span>
+        </div>
 
-    <div class="hero-container">
+        <div class="nav-team">
+            <span>Alumnos: Juliana Sciaini & Máximo Albarracín</span>
+        </div>
 
-        <section class="hero-content">
+        <div class="nav-actions">
+            <!-- Boton de acceso directo al login de administrador pedido en la consigna -->
+            <a href="./login.html" class="btn-admin-link">Acceso Administrador</a>
+        </div>
+    </header>
 
-            <h1>
-                Todo lo que tu mascota necesita
-            </h1>
+    <main class="welcome">
 
-            <p class="subtitle">
-                Ingresa tu nombre para iniciar la compra
-            </p>
+        <div class="hero-container">
 
-            <form id="welcomeForm">
+            <section class="hero-content">
 
-                <input
-                    type="text"
-                    id="nombreCliente"
-                    placeholder=""
-                    required>
+                <h1>
+                    Todo lo que tu mascota necesita
+                </h1>
 
-                <button type="submit">
-                    Comprar productos
-                </button>
+                <p class="subtitle">
+                    Ingresa tu nombre para iniciar la compra
+                </p>
 
-            </form>
+                <form id="welcomeForm">
 
-        </section>
+                    <input
+                        type="text"
+                        id="nombreCliente"
+                        placeholder=""
+                        required>
 
-        <section class="hero-image">
+                    <button type="submit">
+                        Comprar productos
+                    </button>
 
-            <img
-                src="./assets/images/gato-perro-welcome.png"
-                alt="Mascotas">
+                </form>
 
-        </section>
+            </section>
 
-    </div>
+            <section class="hero-image">
 
-</main>
+                <img
+                    src="./assets/images/gato-perro-welcome.png"
+                    alt="Mascotas">
+
+            </section>
+
+        </div>
+
+    </main>
 
     <script src="./js/welcome.js"></script>
 
