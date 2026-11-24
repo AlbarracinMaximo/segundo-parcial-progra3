@@ -28,10 +28,22 @@ clienteNombre.textContent =
 
 
 function mostrarProductos(listaProductos) {
-
     contenedor.innerHTML = "";
 
-    listaProductos.forEach(producto => {
+    const inicio =
+        (paginaActual - 1) *
+        productosPorPagina;
+
+    const fin =
+        inicio + productosPorPagina;
+
+    const productosPagina =
+        listaProductos.slice(
+            inicio,
+            fin
+        );
+
+    productosPagina.forEach(producto => {
 
         contenedor.innerHTML += `
             <div class="card-producto">
@@ -72,6 +84,10 @@ function mostrarProductos(listaProductos) {
 
 let productos = [];
 
+let paginaActual = 1;
+
+const productosPorPagina = 5;
+
 async function cargarProductos() {
 
     try {
@@ -84,9 +100,9 @@ async function cargarProductos() {
         productos =
             await response.json();
 
-        console.log(productos)
-
-        mostrarProductos(productos)
+        mostrarProductos(productos);
+        
+        crearPaginacion(productos);
 
     } catch (error) {
 
@@ -98,8 +114,6 @@ async function cargarProductos() {
     }
 
 }
-
-
 
 function agregarCarrito(idProducto) {
 
@@ -135,7 +149,7 @@ function aplicarFiltros() {
     const especie =
         filtroEspecie.value;
 
-    if(categoria !== ""){
+    if (categoria !== "") {
 
         productosFiltrados =
             productosFiltrados.filter(
@@ -145,7 +159,7 @@ function aplicarFiltros() {
 
     }
 
-    if(especie !== ""){
+    if (especie !== "") {
 
         productosFiltrados =
             productosFiltrados.filter(
@@ -159,16 +173,68 @@ function aplicarFiltros() {
         productosFiltrados
     );
 
+    crearPaginacion(
+        productosFiltrados
+    );
+
 }
+
+
+function crearPaginacion(listaProductos){
+
+    const paginacion =
+        document.getElementById(
+            "paginacion"
+        );
+
+    paginacion.innerHTML = "";
+
+    const totalPaginas =
+        Math.ceil(
+            listaProductos.length /
+            productosPorPagina
+        );
+
+    for(
+        let i = 1;
+        i <= totalPaginas;
+        i++
+    ){
+
+        paginacion.innerHTML += `
+            <button
+                onclick="cambiarPagina(${i})"
+            >
+                ${i}
+            </button>
+        `;
+
+    }
+
+}
+
+window.cambiarPagina = function(numeroPagina){
+
+    paginaActual = numeroPagina;
+
+    aplicarFiltros();
+
+};
 
 filtroCategoria.addEventListener(
     "change",
-    aplicarFiltros
+    () => {
+        paginaActual = 1;
+        aplicarFiltros();
+    }
 );
 
 filtroEspecie.addEventListener(
     "change",
-    aplicarFiltros
+    () => {
+        paginaActual = 1;
+        aplicarFiltros();
+    }
 );
 
 cargarProductos();

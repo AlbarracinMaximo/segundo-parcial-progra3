@@ -362,3 +362,24 @@ body {
     min-width:250px;
 }
 
+/*PAGINACION*/
+
+#paginacion{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:20px;
+}
+
+#paginacion button{
+    padding:8px 15px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:var(--celeste);
+    transition:.3s;
+}
+
+#paginacion button:hover{
+    background:var(--rosa);
+}
